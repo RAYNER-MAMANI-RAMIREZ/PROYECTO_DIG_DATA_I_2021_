@@ -1,0 +1,63 @@
+---
+title: "RESULTADOS DE LA ENCUESTA A HOGARES 2019, REALIZADA POR EL INSTITUTO NACIONAL DE ESTADÍSTICA BOLIVIA"
+author: ""
+date: ""
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## 1.	INTRODUCCIÓN.
+
+La encuesta a hogares sobre viviendas, fue desarrollado por el Instituto Nacional de Estadística (INE) Bolivia, para proveer información relevante sobre el bienestar y calidad de vida de los hogares en Bolivia. Las encuestas de hogares que realiza el INE cada cierto tiempo que tienen como objetivo proporcionar estadísticas e indicadores socioeconómicos y demográficos de la población Boliviana, necesarias para la formulación, evaluación, seguimiento de políticas y diseños de programas de acción contenidas en el PDES 2016- 2020.
+
+## 2.	OBJETIVOS.
+
+### 2.1.	Objetivo general.
+
+Obtener información de la situacion de calidad de vida de los hogares de Bolivia, con ayuda de la base de datos de encuesta de hogares 2019, que muestra las características de cada vivienda en el territorio Boliviano.
+
+### 2.2.	Objetivos específicos.
+
+*	Determinar el promedio de gastos en agua  por departamento según área donde se ubica la vivienda.
+
+*	Determinar el porcentaje de las viviendas que tienen acceso al servicio de internet según el departamento.
+
+* Determine el porcentaje de familias que viven en una vivienda alquilada segun el departamento.
+
+* Determine el porcentaje de familias que viven en una vivienda en contrato Mixto (alquiler y anticretico).
+
+*	Determinar el promedio de gastos en el alquiler de acuerdo al número de habitaciones con las que cuentan cada vivienda.
+
+*	Determinar el porcentaje de las viviendas que desechan la basura del hogar de formas distintas.
+
+*	Determinar el porcentaje de los tipos de servicios sanitarios de las viviendas según el área donde estén.
+
+*	Mostrar los materiales del piso según los tipos de viviendas en particular.
+
+*	Mostrar los pagos medios de alquiler de estas viviendas por departamento.
+
+*	Mostrar el comportamiento de los pagos de alquiler según el tipo de vivienda alquilada.
+
+*	Determinar el promedio de las horas al día que disponen las viviendas del servicio de agua según el tipo de vivienda por departamento.
+
+* Determinar el porcentaje de hogares con agua que proviene de Pozo excavado no cubierto segun departamento.
+
+*	Determinar el porcentaje de los tipos de combustible o energía que se utiliza para cocinar/preparar alimentos según el departamento.
+
+*	Determinar el porcentaje de los tipos de baños, servicios sanitarios o letrinas que utilizan por área, según el departamento elegido.
+
+## 3.	MOTIVACIÓN.
+
+Este tema es de mucha importancia para conocer las condiciones de vida de las viviendas tanto en área rural como urbana. Haciendo comparaciones entre estas dos áreas, nos permite conocer aspectos como el cresimiento o disminucion de la pobreza, el bienestar y las condiciones de vida de los hogares Bolivianos. Así los resultados finales de esta encuesta podrían ayudar a tomar  decisiones gubernamentales (políticas públicas) que beneficien a la familias boliviana.
+
+
+
+
+
+
+
+
+
+
