@@ -52,6 +52,35 @@ Obtener información de la situacion de calidad de vida de los hogares de Bolivi
 
 Este tema es de mucha importancia para conocer las condiciones de vida de las viviendas tanto en área rural como urbana. Haciendo comparaciones entre estas dos áreas, nos permite conocer aspectos como el cresimiento o disminucion de la pobreza, el bienestar y las condiciones de vida de los hogares Bolivianos. Así los resultados finales de esta encuesta podrían ayudar a tomar  decisiones gubernamentales (políticas públicas) que beneficien a la familias boliviana.
 
+## 4.	MARCO TEÓRICO.
+
+Según las Naciones Unidas (Cuadernos de la Cepal),Encuestas a Hogares en América Latina.Este sistema pretende la identificacion,sistematizacion y tratamiento de los principales problemas que enfrenta la investigacion de las variables socioeconomicas y demograficas mediante encuestas de hogares en america latina.
+Las limitaciones de recursos y de infraestructura institucional que enfrentan los países en desarrollo para poner sus estadísticas socioeconómicas a tono con las demandas actuales han llevado al convencimiento de que las encuestas de hogares constituyen en estos países el instrumento más idóneo para alcanzar ese objetivo. Las encuestas de hogares por muestreo constituyen una manera práctica de obtener datos actualizados sobre las condiciones y tendencias sociales, el comportamiento socioeconómico de los hogares, el acceso a los servicios básicos de bienestar y el efecto de los programas de bienestar. Más aún, por su capacidad de obtener información sobre diferentes variables las encuestas de hogares son instrumentos particularmente adecuados para generar bases de datos sobre los hogares, que abren múltiples posibilidades de interrelación y análisis mediante los actuales sistemas de procesamiento electrónico de datos (Naciones Unidas, Mayo 1983).
+
+### ESTADO DE VIVIENDA EN BOLIVIA  
+De acuerdo a datos del INE 2018,Bolivia reporta un alto índice de déficit habitacional cuantitativo y cualitativo. El 67,5 % de la población vive en áreas urbanas, concentradas principalmente en el eje metropolitano del país. Se estima que para el 2030, el 80 % de la población será urbana.
+El déficit cualitativo en Bolivia se caracteriza por:
+ * 30% de las familias bolivianas viven en hacinamiento.
+ * 24% de la población refleja que 3 o más personas duermen en una sola habitación.
+ * 31% de la población vive en condiciones inadecuadas.
+ * 64,8% no cuentan con espacio suficiente en su vivienda.
+ * 35% de las viviendas en Bolivia no cuentan con servicios básicos.
+
+
+
+
+
+
+
+### ENCUESTA DE HOGARES CONTINUA EN BOLIVIA
+
+#### VIVIENDA 
+
+
+### LENGUAJE DE PROGRAMACION R
+R es un lenguaje de programación libre para análisis estadístico y gráfico, permite manipular datos rápidamente y de forma precisa. Llega a automatizar procesos fácilmente gracias a la creación de Scripts.
+
+Fue desarrollado por Robert Gentleman y Ross Ihaka, quienes pertenecían al Departamento de Estadística de la Universidad de Auckland en 1993. R tiene las siguientes características (Unir, 2019): R tiene diversidad de paquetes, funciones, librerías, etc. que permite organizar mejor los trabajos, como conjunto de instrucciones que queremos usar y demás. Entre los paquetes tenemos a los siguientes: plyr, lubridate, reshape2, stringr, ggplot2, caret, randomforest, foreign, SQLdf, RODBC, RPostgresSQL, RSQLite, etc (ASP Ogems, 2014)
 
 
 
