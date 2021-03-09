@@ -66,15 +66,31 @@ El déficit cualitativo en Bolivia se caracteriza por:
  * 64,8% no cuentan con espacio suficiente en su vivienda.
  * 35% de las viviendas en Bolivia no cuentan con servicios básicos.
 
+## ENCUESTA DE HOGARES EN BOLIVIA (VIVIENDA)
 
+Toda persona tiene derecho a un nivel de vida adecuado que le asegure, así como a su familia, la salud y el bienestar, y en especial la alimentación, el vestido, la vivienda, la asistencia médica y los servicios sociales necesarios; tiene asimismo derecho a los seguros en caso de desempleo, enfermedad, invalidez, viudez, vejez u otros casos de pérdida de sus medios de subsistencia por circunstancias independientes de su voluntad.
 
+La EH 2019 presenta un panorama completo sobre las condiciones de vida de la población boliviana. La unidad de análisis para esta encuesta fueron los hogares de Bolivia, con unidades muestrales como los Sectores Censales, Segmentos Censales, Viviendas, y la implementación de las Unidades Primarias de Muestreo (UPM) que concuerdan con los sectores censales o una agrupación de ellos. 
 
+La metodología aplicada para la recolección de la información es la Entrevista Directa, conducida por personal debidamente capacitado que visitó las viviendas seleccionadas durante el período de recolección de información, utilizando una boleta multitemática que permite el estudio del bienestar de los hogares,capturando informacion necesaria como: gasto en agua potable,acceso al servicio de internet,vive en vivienda alquilada,contrato mixto (Alquiler y anticretico),gasto en el alquililer de acuerdo al numero de habitaciones, etc.
 
+De tal encuesta que es utilizada para el estudio, se tomara en cuenta 15 variables de la Base de Datos Correspondiente, estas son:
 
-
-### ENCUESTA DE HOGARES CONTINUA EN BOLIVIA
-
-#### VIVIENDA 
+  * 
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
 
 
 ### LENGUAJE DE PROGRAMACION R
