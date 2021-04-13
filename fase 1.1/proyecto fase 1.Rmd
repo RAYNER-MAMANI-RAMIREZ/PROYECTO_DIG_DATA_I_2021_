@@ -1,5 +1,5 @@
 ---
-title: "RESULTADOS DE LA ENCUESTA A HOGARES 2019, REALIZADA POR EL INSTITUTO NACIONAL DE ESTADÍSTICA BOLIVIA"
+title: "RESULTADOS DE LA ENCUESTA A HOGARES 2019-VIVIENDA, REALIZADA POR EL INSTITUTO NACIONAL DE ESTADÍSTICA INE-BOLIVIA"
 author: ""
 date: ""
 output: html_document
@@ -10,23 +10,29 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ## 1.	INTRODUCCIÓN.
 
-La encuesta a hogares sobre viviendas, fue desarrollado por el Instituto Nacional de Estadística (INE) Bolivia, para proveer información relevante sobre el bienestar y calidad de vida de los hogares en Bolivia. Las encuestas de hogares que realiza el INE cada cierto tiempo que tienen como objetivo proporcionar estadísticas e indicadores socioeconómicos y demográficos de la población Boliviana, necesarias para la formulación, evaluación, seguimiento de políticas y diseños de programas de acción contenidas en el PDES 2016- 2020.
+La encuesta a hogares sobre viviendas, fue desarrollado por el Instituto Nacional de Estadística (INE),para proveer información relevante sobre el bienestar y calidad de vida de los hogares en Bolivia. Las encuestas de hogares que realiza el INE cada cierto tiempo, que tienen como objetivo proporcionar estadísticas e indicadores socioeconómicos y demográficos de la población Boliviana, necesarias para la formulación, evaluación, seguimiento de políticas y diseños de programas de acción contenidas en el PDES 2016 - 2020.
+
+La implementacion del plan de desarrollo Economico y Social PDES 2016 - 2020 ,fortalecerá al Estado Plurinacional como actor 
+protagonista en la implementación de los aspectos sociales, económicos y políticos definidos 
+en la Agenda Patriótica 2025 en el marco de la Revolución Cultural Democrática del país.
+
+El cual deberá permitir: 
+
+   * Robustecer la visión del Vivir Bien en la gestión pública 
+plurinacional.
+
+   * Establecer las condiciones para que Bolivia se constituya en el centro de integración energética regional y en el centro de integración vial de la región.
+   
+   * Consolidar el Modelo Económico Social Comunitario Productivo, constituyendo un hito importante y definitivo 
+en la diversificación económica del país y en la generación de mayores ingresos continuos y estables en las áreas de energía, hidrocarburos, agropecuaria, minería y turismo.
 
 ## 2.	OBJETIVOS.
 
 ### 2.1.	Objetivo general.
 
-Obtener información de la situacion de calidad de vida de los hogares de Bolivia, con ayuda de la base de datos de encuesta de hogares 2019, que muestra las características de cada vivienda en el territorio Boliviano.
+Obtener información de la situacion de calidad de vida de los hogares en Bolivia, con ayuda de la base de datos de encuesta de hogares 2019_vivienda, que muestra las características de cada vivienda en el territorio Boliviano.
 
 ### 2.2.	Objetivos específicos.
-
-*	Determinar el promedio de gastos en agua  por departamento según área donde se ubica la vivienda.
-
-*	Determinar el porcentaje de las viviendas que tienen acceso al servicio de internet según el departamento.
-
-* Determine el porcentaje de familias que viven en una vivienda alquilada segun el departamento.
-
-* Determine el porcentaje de familias que viven en una vivienda en contrato Mixto (alquiler y anticretico).
 
 *	Determinar el promedio de gastos en el alquiler de acuerdo al número de habitaciones con las que cuentan cada vivienda.
 
@@ -34,69 +40,49 @@ Obtener información de la situacion de calidad de vida de los hogares de Bolivi
 
 *	Determinar el porcentaje de los tipos de servicios sanitarios de las viviendas según el área donde estén.
 
-*	Mostrar los materiales del piso según los tipos de viviendas en particular.
+*	Determinar el promedio de gastos en agua por departamento según área donde se ubica la vivienda.
 
-*	Mostrar los pagos medios de alquiler de estas viviendas por departamento.
+*	Determinar el porcentaje de las viviendas que tienen acceso al servicio de internet según el departamento.
+
+*	Mostrar los materiales del piso según los tipos de viviendas en particular.
 
 *	Mostrar el comportamiento de los pagos de alquiler según el tipo de vivienda alquilada.
 
 *	Determinar el promedio de las horas al día que disponen las viviendas del servicio de agua según el tipo de vivienda por departamento.
 
-* Determinar el porcentaje de hogares con agua que proviene de Pozo excavado no cubierto segun departamento.
-
 *	Determinar el porcentaje de los tipos de combustible o energía que se utiliza para cocinar/preparar alimentos según el departamento.
 
 *	Determinar el porcentaje de los tipos de baños, servicios sanitarios o letrinas que utilizan por área, según el departamento elegido.
 
+*	Mostrar los materiales del techo según los tipos de viviendas en particular.
+
+*	Mostrar los pagos medios de alquiler de estas viviendas.
+
 ## 3.	MOTIVACIÓN.
 
-Este tema es de mucha importancia para conocer las condiciones de vida de las viviendas tanto en área rural como urbana. Haciendo comparaciones entre estas dos áreas, nos permite conocer aspectos como el cresimiento o disminucion de la pobreza, el bienestar y las condiciones de vida de los hogares Bolivianos. Así los resultados finales de esta encuesta podrían ayudar a tomar  decisiones gubernamentales (políticas públicas) que beneficien a la familias boliviana.
-
-## 4.	MARCO TEÓRICO.
-
-Según las Naciones Unidas (Cuadernos de la Cepal),Encuestas a Hogares en América Latina.Este sistema pretende la identificacion,sistematizacion y tratamiento de los principales problemas que enfrenta la investigacion de las variables socioeconomicas y demograficas mediante encuestas de hogares en america latina.
-Las limitaciones de recursos y de infraestructura institucional que enfrentan los países en desarrollo para poner sus estadísticas socioeconómicas a tono con las demandas actuales han llevado al convencimiento de que las encuestas de hogares constituyen en estos países el instrumento más idóneo para alcanzar ese objetivo. Las encuestas de hogares por muestreo constituyen una manera práctica de obtener datos actualizados sobre las condiciones y tendencias sociales, el comportamiento socioeconómico de los hogares, el acceso a los servicios básicos de bienestar y el efecto de los programas de bienestar. Más aún, por su capacidad de obtener información sobre diferentes variables las encuestas de hogares son instrumentos particularmente adecuados para generar bases de datos sobre los hogares, que abren múltiples posibilidades de interrelación y análisis mediante los actuales sistemas de procesamiento electrónico de datos (Naciones Unidas, Mayo 1983).
-
-### ESTADO DE VIVIENDA EN BOLIVIA  
-De acuerdo a datos del INE 2018,Bolivia reporta un alto índice de déficit habitacional cuantitativo y cualitativo. El 67,5 % de la población vive en áreas urbanas, concentradas principalmente en el eje metropolitano del país. Se estima que para el 2030, el 80 % de la población será urbana.
-El déficit cualitativo en Bolivia se caracteriza por:
- * 30% de las familias bolivianas viven en hacinamiento.
- * 24% de la población refleja que 3 o más personas duermen en una sola habitación.
- * 31% de la población vive en condiciones inadecuadas.
- * 64,8% no cuentan con espacio suficiente en su vivienda.
- * 35% de las viviendas en Bolivia no cuentan con servicios básicos.
-
-## ENCUESTA DE HOGARES EN BOLIVIA (VIVIENDA)
-
-Toda persona tiene derecho a un nivel de vida adecuado que le asegure, así como a su familia, la salud y el bienestar, y en especial la alimentación, el vestido, la vivienda, la asistencia médica y los servicios sociales necesarios; tiene asimismo derecho a los seguros en caso de desempleo, enfermedad, invalidez, viudez, vejez u otros casos de pérdida de sus medios de subsistencia por circunstancias independientes de su voluntad.
-
-La EH 2019 presenta un panorama completo sobre las condiciones de vida de la población boliviana. La unidad de análisis para esta encuesta fueron los hogares de Bolivia, con unidades muestrales como los Sectores Censales, Segmentos Censales, Viviendas, y la implementación de las Unidades Primarias de Muestreo (UPM) que concuerdan con los sectores censales o una agrupación de ellos. 
-
-La metodología aplicada para la recolección de la información es la Entrevista Directa, conducida por personal debidamente capacitado que visitó las viviendas seleccionadas durante el período de recolección de información, utilizando una boleta multitemática que permite el estudio del bienestar de los hogares,capturando informacion necesaria como: gasto en agua potable,acceso al servicio de internet,vive en vivienda alquilada,contrato mixto (Alquiler y anticretico),gasto en el alquililer de acuerdo al numero de habitaciones, etc.
-
-De tal encuesta que es utilizada para el estudio, se tomara en cuenta 15 variables de la Base de Datos Correspondiente, estas son:
-
-  * 
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
-  *
+Las encuestas de hogares son una fuente valiosa de datos socioeconomicos.En particular este tema es de mucha importancia para conocer las condiciones de vida de las viviendas tanto en área rural como urbana. Haciendo comparaciones entre estas dos áreas, nos permite conocer aspectos como el cresimiento o disminucion de la pobreza, el bienestar y las condiciones de vida de los hogares Bolivianos. Así los resultados finales de esta encuesta podrían ayudar a tomar  decisiones gubernamentales (políticas públicas) que beneficien a la familias boliviana.
 
 
-### LENGUAJE DE PROGRAMACION R
-R es un lenguaje de programación libre para análisis estadístico y gráfico, permite manipular datos rápidamente y de forma precisa. Llega a automatizar procesos fácilmente gracias a la creación de Scripts.
 
-Fue desarrollado por Robert Gentleman y Ross Ihaka, quienes pertenecían al Departamento de Estadística de la Universidad de Auckland en 1993. R tiene las siguientes características (Unir, 2019): R tiene diversidad de paquetes, funciones, librerías, etc. que permite organizar mejor los trabajos, como conjunto de instrucciones que queremos usar y demás. Entre los paquetes tenemos a los siguientes: plyr, lubridate, reshape2, stringr, ggplot2, caret, randomforest, foreign, SQLdf, RODBC, RPostgresSQL, RSQLite, etc (ASP Ogems, 2014)
+# NOTA:
+
+* La base de datos con la que se trabajara es **Encuesta a hogares 2019 vivienda**.
+
+* Los pdfs que se encuatra en este repositorio son las herramientas con las que procederemos a desarrollar mas a detalle los proximas etapas del trabajo.
+
+* Aqui<http://anda.ine.gob.bo/index.php/catalog/84/data-dictionary/F2?file_name=EH2019_Vivienda> podemos encontrar informacion detallada sobre la descripcion de las variables que tiene la base de datos EH19v, los cuales tambien seran utilizados en el trabajo quer se esta realizando.
+
+
+```{r}
+#rm(list=ls())
+#getwd() # directorio de trabajo actual 
+#dir()   # lista los archivos en el directorio de trbajo
+# este es un enlace de github, donde ya esta la base de datos listo para trabajarlo
+
+```
+
+
+
 
 
 
