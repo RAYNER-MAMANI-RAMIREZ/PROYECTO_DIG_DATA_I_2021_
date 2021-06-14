@@ -151,7 +151,7 @@ ui = Es el promedio.
 
 n  = Es el número total de observaciones. 
 
-### ANALISIS
+### ANÁLISIS
 
 * Como podemos apreciar en el gráfico y tabla el gasto promedio de agua en el área rural es bajo, esto debido a que algunos  miembros de la vivienda no gastan mucha agua  de la vivienda porque también consumen agua pública o de algún otro medio, es por eso que la forma de la distribución  de frecuencia en el área rural es bajo con relación a el área urbana que es elevado su distribución.
 
@@ -220,13 +220,13 @@ N = Es el número total de observaciones
 
 Pi = Es el porcentaje de cada observación
 
-### ANALISIS 
+### ANÁLISIS 
 
 
-* Como podemos ver la distribución de frecuencias de las viviendas que si cuentan con el servicio de internet (color rojo) es más bajo con relación a las viviendas que no tienen el servicio de internet (color azul) a nivel de Bolivia.
+* Como podemos ver la distribución de frecuencias de las viviendas que si cuentan con el servicio de internet (color rojo) es más bajo con relación a las viviendas que no tienen el servicio de internet (color azul) en cuanto a Bolivia.
 * El departamento con viviendas con menos porcentaje de  servicio de internet es Potosí, esto ocurre a causa que el departamento no cuenta con numerosas empresas, instituciones, ministerios, etc.
 
-* El departamento con mayor porcentaje servicio de internet es Santa Cruz, esto debido a que el departamento es la más poblada de Bolivia, tiene empresas importantes, fabricas, etc. La cual lo hace la ciudad con viviendas con mayor porcentaje de servicio de internet a nivel de departamentos.
+* El departamento con mayor porcentaje servicio de internet es Santa Cruz, esto debido a que el departamento es la más poblada de Bolivia, tiene empresas importantes, fabricas, etc. La cual lo hace la ciudad con viviendas con mayor porcentaje de servicio de internet en cuanto a departamentos.
 
 
 IND 3
@@ -291,7 +291,7 @@ ui = Es el promedio.
 
 n = Es el número total de observaciones. 
 
-### ANALISIS 
+### ANÁLISIS 
 
 * Como podemos ver en la distribución en el diagrama de barras, a medida que la vivienda cuenta con mayor cantidad de habitaciones también el  promedio el costo en el  alquiler de la vivienda aumenta.
 
@@ -373,7 +373,7 @@ N = Es el número total de observaciones
 Pi = Es el porcentaje de cada observación
 
 
-### ANALISIS 
+### ANÁLISIS 
 
 * En Bolivia el 1.04 % de las viviendas que forman parte de la eh19, desechan la basura al río.
 
@@ -452,7 +452,7 @@ N = Es el número total de observaciones
 Pi = Es el porcentaje de cada observación
 
 
-### ANALISIS 
+### ANÁLISIS 
 
 * 62.90 % de las viviendas que fueron parte de la eh19, en el área urbana cuenta con baño o letrina con descarga de agua.
 
@@ -622,7 +622,7 @@ text(g6,pi$Freq,pi$Freq,pos=3)
 *FORMULA DE CALCULO:*
 Se realizará un plot (comando en R) para el cruce de variables entre el tipo de vivienda que se escoja y los datos del material de piso.
 
-**ANALISIS**
+**ANÁLISIS**
 
 Lo más resaltante que podemos destacar es lo siguiente:
 
@@ -699,7 +699,7 @@ print(knitr::kable(te,caption = nam[i]))
 Se realizará un plot (comando en R) para el cruce de variables entre el tipo de vivienda que se escoja y los datos del material del techo.
 
 
-**ANALISIS**
+**ANÁLISIS**
 
 Lo más resaltante que podemos destacar es lo siguiente:
 
@@ -779,8 +779,7 @@ xi: Pagos de alquiler según una vivienda en particular
 n: Número de observaciones.
 
 
-
-### ANALISIS 
+### ANÁLISIS 
 
 * En la eh19 en el tipo de vivienda el gasto en promedio de alquiler más alto es por un departamento.
 
@@ -835,7 +834,7 @@ ui= Es el promedio.
 n = Es el número total de observaciones.   
 
 
-**ANALISIS**
+**ANÁLISIS**
 
 * Por ejemplo podemos analizar por algunos departamentos.
 
@@ -931,7 +930,7 @@ N = Es el número total de observaciones
 Pi = Es el porcentaje de cada observación
 
 
-### ANALISIS 
+### ANÁLISIS 
 
 Veamos los tres principales departamentos con mayor población.
 
@@ -1081,9 +1080,9 @@ Pi = Es el porcentaje de cada observación
 Los datos utilizados en todos los indicadores provienen de la Encuesta a Hogares 2018- INE (Instituto nacional de estadísticas).
 
 
-**ANALISIS**
+**ANÁLISIS**
 
-Analisimos los tres principales departametos.
+Analizamos los tres principales departamentos.
 
 La Paz
 
