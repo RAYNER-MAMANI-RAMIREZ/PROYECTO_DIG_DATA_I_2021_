@@ -1,0 +1,1115 @@
+---
+title: "EH19V"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+# librerias mas importantes 
+library(flexdashboard)
+library(readxl)
+library(dplyr)
+```
+```{r}
+rm(list = ls())
+setwd("C:\\Users\\lenovo\\Documents\\GitHub\\PROYECTO_DIG_DATA_I_2021_\\fase 1.1")
+library(foreign) # para otros formatos 
+bd<-read.spss("EH2019_Vivienda.sav",to.data.frame = T) 
+aux<-attributes(bd)
+```
+
+```{r }
+#seleccionado las variables de interes
+bd<- bd %>% select(1,2,3,4,5,9,11,14,16,20,23,28,34,57,60,64)
+```
+
+# INFORMACION {data-orientation=rows}
+
+Column {data-width=300}
+----------------------------------------
+
+### 
+
+```{r}
+knitr::include_graphics("https://aclo.org.bo/wp-content/uploads/2018/09/La_Paz-Encuestadores-censan-familia-rural_LRZIMA20180928_0010_11.jpg") 
+```
+
+### 
+
+INTRODUCCIÓN 
+
+La encuesta a hogares sobre viviendas, fue desarrollado por el Instituto Nacional de Estadística (INE) para proveer información relevante sobre el bienestar y calidad de vida de los hogares en Bolivia. La encuesta de hogares que realiza el INE que tienen como objetivo proporcionar estadísticas e indicadores socioeconómicos y demográficos de la población boliviana, necesarias para la formulación, evaluación, seguimiento de políticas y diseños de programas de acción contenidas en el PDES 2016- 2020.
+
+OBJETIVO 
+
+
+Obtener información y desarrollar un Dashboard a partir de los indicadores que describen la calidad de vida de los hogares en Bolivia, con ayuda de la base de datos de encuesta de hogares 2019_vivienda, que muestra las características de cada vivienda en el territorio Boliviano.
+
+# LISTA DE INDICADORES 
+
+### 
+
+1. El promedio de gastos en agua por departamento según el área donde se ubique la vivienda. Este indicador muestra los gastos de agua por departamento según el área donde se ubica la vivienda.
+
+2. El porcentaje de viviendas que tiene acceso al servicio de internet según el departamento. Este indicador muestra el porcentaje de las viviendas que tienen acceso al servicio de internet según el departamento.
+
+3. El promedio de gastos en el alquiler de acuerdo al número de habitaciones con las que cuentan cada vivienda. El indicador refleja el promedio de gastos en el alquiler, esto para conocer si este gasto es alto o bajo dependiendo del número de habitaciones y cuanto es el promedio en el gasto del alquiler en estas viviendas.
+
+4. El porcentaje  de las viviendas que desechan la basura del hogar de formas distintas. El indicador refleja el porcentaje de cada una de las opciones que se presenta en la pregunta 21 del cuestionario (¿Habitualmente que hace con la basura que genera el hogar?). Esto para conocer cuál de estas formas de desechar la basura es más utilizada en estas viviendas.
+
+5. El porcentaje de los tipos de servicios sanitarios de las viviendas según el área. El indicador refleja el porcentaje del tipo de servicio sanitario con las que cuentan estas viviendas dependiendo del área donde estas se ubiquen.
+
+6. Materiales del piso según los tipos de viviendas en particular. Este indicador el material para los pisos según el tipo de vivienda.
+
+7. Materiales del techo según los tipos de viviendas en particular. Este indicador el material del techo según el tipo de vivienda.
+
+8. Los pagos medios de alquiler según los tipos de vivienda en particular. Este indicador muestra un promedio del Pago de alquiler de vivienda según cada tipo de vivienda; además, también mostrará un gráfico de la distribución que tiene los pagos de las viviendas según el tipo de viviendas.
+
+9. El promedio de las horas al día que disponen las viviendas del servicio de agua según el tipo de vivienda por departamento. El indicador refleja el promedio del tiempo en horas al día que disponen las viviendas del agua según el tipo de vivienda, para cada departamento.
+
+10. El porcentaje de los tipos de combustible o energía que se utiliza para cocinar/preparar alimentos  según el departamento. El indicador refleja el porcentaje del tipo de combustible o energía para cocinar con las que cuentan estas viviendas dependiendo del departamento donde estas se ubiquen. 
+
+11. El porcentaje  de los tipos de baños, servicios sanitarios o letrinas que utilizan  por área, según el departamento elegido. El indicador refleja el porcentaje del tipo de baño, servicio sanitario o letrina utilizan normalmente las viviendas dependiendo del área, según el departamento elegido.
+
+
+INDI 1
+=======================================================================
+  
+Row
+-----------------------------------------------------------------------
+  
+### TABLA
+  
+```{r}
+bd1<-bd[!is.na(bd$s01a_12),]
+bd2<-aggregate(bd1$s01a_12,list(bd1$area,bd1$depto),mean)
+names(bd2)[1]<-"area"
+names(bd2)[2]<-"departamento"
+names(bd2)[3]<-"promedio de gasto en agua"
+
+br<-bd2[bd2$area=="Rural",]
+bu<-bd2[bd2$area=="Urbana",]
+knitr::kable(br)
+knitr::kable(bu)
+```
+
+
+Column {.tabset}
+----------------------------------------
+### GRAFICA RURAL 
+
+  
+```{r}
+b1<-barplot(br$`promedio de gasto en agua`,names.arg = br$departamento,col = c("aquamarine4"),ylim = c(0,30))
+title(main = "Gastos de agua en el area rural")
+text(b1,br$`promedio de gasto en agua`,round(br$`promedio de gasto en agua`,3),pos=3)
+```
+
+### GRAFICA URBANA
+
+```{r}
+barplot(bu$`promedio de gasto en agua`,names.arg = bu$departamento,col = c("azure4"),ylim = c(0,100))
+title(main = "Gastos de agua en el area urbana")
+text(b1,bu$`promedio de gasto en agua`,round(bu$`promedio de gasto en agua`,3),pos=3)
+
+```
+
+### FICHA TECNICA 
+
+1.GASTOS DE AGUA (12) SEGÚN ÁREA
+
+*NOMBRE DEL INDICADOR:* Gastos de agua según área.
+
+*SIGLA DEL INDICADOR:* Viv_1.
+
+*OBJETIVO:* Determinar el promedio de gastos en agua por departamento según área donde se ubica la vivienda.
+
+*VARIABLES:* La construcción del indicador considera la variable (pregunta) del cuestionario.
+
++ ¿Cuánto gastan normalmente en agua para uso del hogar al mes?
+
++ área
+
++ depto
+
+*DESCRIPCIÓN DEL INDICADOR:* Este indicador muestra los gastos de agua por departamento según el área donde se ubica la vivienda.
+
+*MÉTODO DE MEDICIÓN:* La medición se realizará a través de los datos de la variable gastos, donde se obtendrá el promedio de gastos en agua al mes de las viviendas y así poder relacionarlo con el departamento que se encuentra la vivienda.
+
+*FÓRMULA DE CÁLCULO:*
+
+$$ u_i= \sum_{i=1}^{n} X_i/n$$
+
+Dado: 
+
+xi = Los datos
+
+ui = Es el promedio.
+
+n  = Es el número total de observaciones. 
+
+### ANÁLISIS
+
+* Como podemos apreciar en el gráfico y tabla el gasto promedio de agua en el área rural es bajo, esto debido a que algunos  miembros de la vivienda no gastan mucha agua  de la vivienda porque también consumen agua pública o de algún otro medio, es por eso que la forma de la distribución  de frecuencia en el área rural es bajo con relación a el área urbana que es elevado su distribución.
+
+* La Paz-Rural, presenta en promedio el más bajo de gasto de agua, esto a nivel departamento-área.
+
+* Santa Cruz-Urbano, presenta en promedio el más alto en cuanto al gasto de agua, esto a nivel departamento-área.
+
+
+
+IND 2
+=======================================================================
+  
+Row
+-----------------------------------------------------------------------
+  
+### TABLA
+  
+```{r}
+t2<-round(prop.table(table(bd$depto,bd$s01a_31),1)*100,2)
+knitr::kable(t2)
+```
+
+
+Column {.tabset}
+----------------------------------------
+### GRAFICA 
+
+  
+```{r}
+graf1<-barplot(t(t2),col = c("red","blue"),beside = T)
+text(graf1,t(t2),paste0(t(t2),"%"),pos=3)
+```
+
+### FICHA TECNICA 
+
+2. SERVICIO DE INTERNET (31) SEGÚN DEPARTAMENTO.
+
+*NOMBRE DEL INDICADOR:* Viviendas con acceso a internet.
+
+*SIGLA DEL INDICADOR:* Viv_2.
+
+*OBJETIVO:* Determinar el porcentaje de las viviendas que tienen acceso al servicio de internet según el departamento.
+
+*VARIABLE:* La construcción del indicador considera de una variable (pregunta) del cuestionario.
+
++	¿Tiene el hogar acceso al servicio de internet en su vivienda?
+
++ depto
+
+*DESCRIPCIÓN DEL INDICADOR:* Este indicador muestra el porcentaje de las viviendas que tienen acceso al servicio de internet según el departamento.
+
+*MÉTODO DE MEDICIÓN:* El método de medición de este indicador se realizará a través de una tabla de frecuencias, ya que este es una variable cualitativa, en la tabla de frecuencias hallaremos el porcentaje de las dos opciones.
+
+*FÓRMULA DE CÁLCULO:*
+
+$$ f_i = n_i/N $$
+$$ P_i = f_i *100$$
+
+Dado: 
+
+fi = Es la frecuencia relativa 
+
+ni = Es la frecuencia absoluta
+
+N = Es el número total de observaciones
+
+Pi = Es el porcentaje de cada observación
+
+### ANÁLISIS 
+
+
+* Como podemos ver la distribución de frecuencias de las viviendas que si cuentan con el servicio de internet (color rojo) es más bajo con relación a las viviendas que no tienen el servicio de internet (color azul) en cuanto a Bolivia.
+* El departamento con viviendas con menos porcentaje de  servicio de internet es Potosí, esto ocurre a causa que el departamento no cuenta con numerosas empresas, instituciones, ministerios, etc.
+
+* El departamento con mayor porcentaje servicio de internet es Santa Cruz, esto debido a que el departamento es la más poblada de Bolivia, tiene empresas importantes, fabricas, etc. La cual lo hace la ciudad con viviendas con mayor porcentaje de servicio de internet en cuanto a departamentos.
+
+
+IND 3
+=======================================================================
+  
+Row
+-----------------------------------------------------------------------
+  
+### TABLA
+  
+```{r}
+library(dplyr)
+library(dbplot) # para graficas
+library(sparklyr) # iniciar seccion de spark
+# creando una seccion en el spark
+sc<-spark_connect(master="local") # codigo que no se modifica
+sp_bd<-copy_to(sc,bd,"eh19")
+knitr::kable(sp_bd %>% rename(n_habitaciones=s01a_27)%>% group_by(n_habitaciones) %>% summarise(promedio=mean(s01a_04,na.rm = T)))
+
+```
+
+
+Column {.tabset}
+----------------------------------------
+
+### GRAFICA 
+
+  
+```{r}
+sp_bd %>% dbplot_bar(s01a_27,mean(s01a_04,na.rm = T))
+```
+
+### FICHA TECNICA 
+
+3. RELACIÓN ENTRE NÚMERO DE HABITACIONES (27) CON EL ALQUILER (4)
+
+*NOMBRE DEL INDICADOR:* El gasto en el alquiler según el número de habitación.
+
+*SIGLA DEL INDICADOR:* Viv_3.
+
+*OBJETIVO:* Determinar el promedio de gastos en el alquiler de acuerdo al número de habitaciones con las que cuentan cada vivienda. 
+
+*VARIABLES:* La construcción del indicador considera dos variables (pregunta) del cuestionario.
+
++ ¿Cuánto paga mensualmente por concepto de alquiler de esta vivienda?
+
++ ¿Cuántos cuartos o habitaciones de esta vivienda ocupa su hogar, sin cortar baño, cocina, lavandería, garaje, deposito o negocio?
+
+*DESCRIPCIÓN DEL INDICADOR:* El indicador refleja el promedio de gastos en el alquiler, esto para conocer si este gasto es alto o bajo dependiendo del número de habitaciones y cuanto es el promedio en el gasto del alquiler en estas viviendas.
+
+*MÉTODO DE MEDICIÓN:* La medición se realizará de la variable gastos, donde será relacionada con la variable número de habitaciones, así obtendremos los gastos en el alquiler de acuerdo al número de habitaciones con las que cuenta las viviendas.
+
+*FÓRMULA DE CÁLCULO:*
+
+$$ u_i= \sum_{i=1}^{n} X_i/n $$
+
+Donde:
+
+xi = Los datos
+
+ui = Es el promedio.
+
+n = Es el número total de observaciones. 
+
+### ANÁLISIS 
+
+* Como podemos ver en la distribución en el diagrama de barras, a medida que la vivienda cuenta con mayor cantidad de habitaciones también el  promedio el costo en el  alquiler de la vivienda aumenta.
+
+* Tenemos que tomar encuesta que cuando la vivienda está ubicada en una área de clase social alta, aunque la vivienda cuenta con pocas habitaciones, pero el alquiler es alto, con relación a una vivienda que tiene varias habitaciones, pero ubicada en una área de clase social media o baja, es bajo.
+
+
+IND 4
+=======================================================================
+  
+Row
+-----------------------------------------------------------------------
+  
+### TABLA
+
+  
+```{r}
+bas<-round(prop.table(table(bd$s01a_21))*100,2)
+z<-as.data.frame(bas)
+knitr::kable(z)
+```
+
+
+Column {.tabset}
+----------------------------------------
+### GRAFICA 
+
+  
+```{r}
+graf<-barplot(z$Freq,names.arg = z$Var1,ylim = c(0,80))
+text(graf,z$Freq,paste0(z$Freq,"%"),pos=3)
+```
+
+### FICHA TECNICA 
+
+4. ¿QUÉ HACE CON LA BASURA (21)?
+
+*NOMBRE DEL INDICADOR:* ¿Qué hace con la basura?.
+
+*SIGLA DEL INDICADOR:* Viv_4.
+
+*OBJETIVO:* Determinar el porcentaje de las viviendas que desechan la basura del hogar de formas distintas.
+
+*VARIABLES:* La construcción del indicador considera de una variable (pregunta) del cuestionario.
+
++ ¿Habitualmente qué hace con la basura que genera el hogar? 
+
+   1.  La tira al río
+    
+   2.  La quema
+    
+   3.  La tira en un terreno baldío o a la calle.
+    
+   4.  La entierra 
+    
+   5. La deposita en el basurero público o contenedor
+    
+   6. Utiliza el servicio público de recolección (Carro basurero)
+    
+  7. Otro (Especifique)
+    
+*DESCRIPCIÓN DEL INDICADOR:* El indicador refleja el porcentaje de cada una de las opciones que se presenta en la pregunta 21 del cuestionario (¿Habitualmente que hace con la basura que genera el hogar?). Esto para conocer cuál de estas formas de desechar la basura es más utilizada en estas viviendas.
+
+*MÉTODO DE MEDICIÓN:* El método de medición de este indicador se realizará a través de una tabla de frecuencias, ya que este es una variable cualitativa, en la tabla de frecuencias hallaremos el porcentaje de cada una de estas opciones.
+
+*FÓRMULA DE CÁLCULO:*
+
+$$ f_i = n_i/N $$
+
+$$ P_i = f_i *100$$
+
+Donde:
+
+fi = Es la frecuencia relativa 
+
+ni = Es la frecuencia absoluta
+
+N = Es el número total de observaciones
+
+Pi = Es el porcentaje de cada observación
+
+
+### ANÁLISIS 
+
+* En Bolivia el 1.04 % de las viviendas que forman parte de la eh19, desechan la basura al río.
+
+* En Bolivia el 59.06 % de las viviendas que forman parte de la eh19, desechan la basura al servicio público de recolección (Carro Basurero).
+
+* En Bolivia el 18.71 % de las viviendas que forman parte de la eh19, desechan la quemándola.
+
+Como podemos ver hay un gran porcentaje de viviendas que aún desechan la basura quemándola lo cual ocasiona la contaminación del medio ambiente.
+
+```{r}
+
+```
+
+
+
+IND 5
+=======================================================================
+  
+Row
+-----------------------------------------------------------------------
+  
+### TABLA
+  
+```{r}
+ts<-round(prop.table(table(bd$s01a_15,bd$area))*100,2)
+knitr::kable(ts)
+```
+
+
+Column {.tabset}
+----------------------------------------
+### GRAFICA 
+
+  
+```{r}
+fg<-barplot(t(ts),names.arg = names(ts),beside = T,ylim = c(0,80),legend.text = colnames(ts),col = c("red","green"))
+text(fg,t(ts),paste0(t(ts),"%"),pos=3)
+```
+
+### FICHA TECNICA 
+
+
+5. RELACIÓN ENTRE SERVICIO SANITARIO (15) SEGÚN ÁREA
+
+*NOMBRE DEL INDICADOR:* Tipo de servicio sanitario según el área.
+*SIGLA DEL INDICADOR:* Viv_5
+*OBJETIVO:* Determinar el porcentaje de los tipos de servicios sanitarios de las viviendas según el área donde estén.
+*VARIABLES:* La construcción del indicador considera dos variables (pregunta) del cuestionario.
+
++ ¿Qué tipo de baños, servicio sanitario o letrina utilizan normalmente los miembros de su hogar?
+
+  	1. Baño o letrina con descarga de agua
+	
+	  2. Letrina de pozo ciego con piso
+	
+	  3. Pozo abierto (pozo ciego sin piso)
+	
+	  4. Baño ecológico (seco o de compostaje)
+
++ Área
+
+*DESCRIPCIÓN DEL INDICADOR:* El indicador refleja el porcentaje del tipo de servicio sanitario con las que cuentan estas viviendas dependiendo del área donde estas se ubiquen.
+*MÉTODO DE MEDICIÓN:* El método de medición de este indicador se realizará a través de una tabla de frecuencias, ya que este es una variable cualitativa, en la tabla de frecuencias hallaremos el porcentaje de cada una de estas opciones.
+*FÓRMULA DE CÁLCULO:* 
+$$ f_i = n_i/N $$
+
+$$ P_i = f_i *100$$
+Donde:
+
+fi = Es la frecuencia relativa 
+
+ni = Es la frecuencia absoluta
+
+N = Es el número total de observaciones
+
+Pi = Es el porcentaje de cada observación
+
+
+### ANÁLISIS 
+
+* 62.90 % de las viviendas que fueron parte de la eh19, en el área urbana cuenta con baño o letrina con descarga de agua.
+
+* 4.77 % de las viviendas que fueron parte de la eh19, en el área rural cuenta con baño o letrina con descarga de agua.
+
+* 8.18 % de las viviendas que fueron parte de la eh19, en el área rural cuenta con tipo de servicio sanitario (Arbusto/Campo).
+
+
+```{r}
+
+```
+
+IND 6
+=======================================================================
+
+**TIPO DE CASA:MATERIAL PISO**
+
+**CASA**
+```{r}
+# tIPO DE CASA:
+nom<-names(table(bd$s01a_01))
+#casa
+pi<-as.data.frame(table(bd$s01a_01,bd$s01a_09))
+pi<-pi[pi$Var1==nom[1],]
+p1<-pi
+knitr::kable(p1)
+```
+
+**GRAFICO**
+
+```{r}
+g1<-barplot(pi$Freq,names.arg = pi$Var2,ylim = c(0,5000),main = pi$Var1[1])
+text(g1,pi$Freq,pi$Freq,pos=3)
+```
+
+**CHOZA/ PAHUICHI**
+
+```{r}
+# choza/pahuichi
+pi<-as.data.frame(table(bd$s01a_01,bd$s01a_09))
+pi<-pi[pi$Var1==nom[2],]
+p2<-pi
+knitr::kable(p2)
+```
+
+**GRAFICO**
+
+```{r}
+g2<-barplot(pi$Freq,names.arg = pi$Var2,ylim = c(0,500),main = pi$Var1[1])
+text(g2,pi$Freq,pi$Freq,pos=3)
+```
+
+**DEPARTAMENTO**
+
+```{r}
+#Departamento
+pi<-as.data.frame(table(bd$s01a_01,bd$s01a_09))
+pi<-pi[pi$Var1==nom[3],]
+p3<-pi
+knitr::kable(p3)
+```
+
+**GRAFICO**
+
+```{r}
+g3<-barplot(pi$Freq,names.arg = pi$Var2,ylim = c(0,500),main = pi$Var1[1])
+text(g3,pi$Freq,pi$Freq,pos=3)
+```
+
+**CUARTO(S) O HABITACION(ES) SUELTA(S)**
+
+```{r}
+#Cuarto(s) o habitacion(es) suelta(s)
+pi<-as.data.frame(table(bd$s01a_01,bd$s01a_09))
+pi<-pi[pi$Var1==nom[4],]
+p4<-pi
+knitr::kable(p4)
+```
+
+**GRAFICO**
+
+```{r}
+g4<-barplot(pi$Freq,names.arg = pi$Var2,ylim = c(0,4000),main = pi$Var1[1])
+text(g4,pi$Freq,pi$Freq,pos=3)
+
+```
+
+**VIVIENDA IMPROVISADA O VIVIENDA MOVIL**
+
+```{r}
+#Vivienda improvisada o vivienda móvil
+pi<-as.data.frame(table(bd$s01a_01,bd$s01a_09))
+pi<-pi[pi$Var1==nom[5],]
+p5<-pi
+knitr::kable(p5)
+```
+
+**GRAFICO**
+
+```{r}
+g5<-barplot(pi$Freq,names.arg = pi$Var2,ylim = c(0,40),main = pi$Var1[1])
+text(g5,pi$Freq,pi$Freq,pos=3)
+```
+
+**LOCAL NO DESTINADO PARA HABITACION**
+
+```{r}
+#Local no destinado para habitación
+pi<-as.data.frame(table(bd$s01a_01,bd$s01a_09))
+pi<-pi[pi$Var1==nom[6],]
+p6<-pi
+knitr::kable(p6)
+```
+
+**GRAFICO**
+
+```{r }
+g6<-barplot(pi$Freq,names.arg = pi$Var2,ylim = c(0,40),main = pi$Var1[1])
+text(g6,pi$Freq,pi$Freq,pos=3)
+```
+  
+
+**FICHA TECNICA**
+
+
+**RELACIÓN DEL TIPO DE VIVIENDA (1) SEGÚN EL MATERIAL MÁS UTILIZADO EN LOS PISOS DE LA VIVIENDA (9)**
+
+*NOMBRE DEL INDICADOR:* Tipos del material del piso según el tipo de vivienda.
+*SIGLA DEL INDICADOR:* Viv_6
+*OBJETIVO:* Mostrar los materiales del piso según los tipos de viviendas en particular.
+*VARIABLE:* Las variables que se usará para la construcción de este indicador son las siguientes:
+
++ La vivienda es:
+
+  1.Casa
+
+  2.Choza/ Pahuichi
+
+  3.Departamento
+
+  4.Cuarto(s) o habitación(es) suelta(s)
+
+  5.Vivienda improvisada o vivienda móvil
+
+  6.Local no destinado para habitación
+
++ ¿Cuál es el material más utilizado en los pisos de esta vivienda?
+
+  1.Tierra
+
+  2.Tablón de madera
+
+  3.Machimbre/parquet
+
+  4.Alfombra/tapizón
+
+  5.Cemento
+
+  6.Mosaico/baldosas/cerámica
+
+  7.Ladrillo
+
+  8.Otro (especifique)
+
+*DESCRIPCIÓN:* Este indicador el material para los pisos según el tipo de vivienda.
+*MÉTODO DE MEDICIÓN:* El método de medición se realizará con la captura de las dos variables que se encuentran en la base de datos (Tipo de vivienda y material del piso).
+*FORMULA DE CALCULO:*
+Se realizará un plot (comando en R) para el cruce de variables entre el tipo de vivienda que se escoja y los datos del material de piso.
+
+**ANÁLISIS**
+
+Lo más resaltante que podemos destacar es lo siguiente:
+
+* En la eh19 en el tipo de casa (casa) hay 4058 viviendas que tienen el piso de cemento.
+
+* En la eh19 en el tipo de casa (casa) hay 2639 viviendas que tienen el piso de mosaico/baldosas/cerámica.
+
+* En la eh19 en el tipo de casa (casa) hay 13 viviendas que tienen el piso de alfombra/tapizan.
+
+
+Row
+-----------------------------------------------------------------------
+
+Column {.tabset}
+----------------------------------------
+
+
+IND 7
+=======================================================================
+
+**TIPOS DE VIVIENDAS: MATERIAL TECHO**
+
+```{r}
+### indicador 7: mostrar los materials del techo segun el tipo de vivienda
+nam<-rownames(table(bd1$s01a_01,bd1$s01a_08))
+for(i in 1:6){
+te<-as.data.frame(table(bd1$s01a_01,bd1$s01a_08))
+te<-te[te$Var1==nam[i],]
+gt<-barplot(te$Freq,names.arg = te$Var2,ylim = c(0,5000),main = te$Var1[1])
+text(gt,te$Freq,te$Freq,pos=3)
+print(knitr::kable(te,caption = nam[i]))
+}
+```
+
+  
+**FICHA TECNICA**
+
+7. RELACIÓN ENTRE VIVIENDA (1) SEGÚN EL MATERIAL MÁS UTILIZADO EN LOS TECHOS DE ESTA VIVIENDA (8)
+
+*NOMBRE DEL INDICADOR:* Tipos de Viviendas que utilizan un material de Techo
+*SIGLA DEL INDICADOR:* Viv_7
+*OBJETIVO:* Mostrar los materiales del techo según los tipos de viviendas en particular.
+*VARIABLE:* Las variables que se utilizara para la construcción de este indicador son las siguientes: 
+
++ La vivienda es:
+   
+   1.Casa
+   
+   2.Choza/ Pahuichi
+
+   3.Departamento
+
+   4.Cuarto(s) o habitación(es) suelta(s)
+   
+   5.Vivienda improvisada o vivienda móvil
+  
+   6.Local no destinado para habitación
+   
++ ¿Cuál es el material más utilizado en los techos de esta vivienda?
+   
+   1.Calamina o plancha
+   
+   2.Teja (cemento/arcilla/fibrocemento)
+
+   3.Losa de hormigón armado
+
+   4.Paja/caña/palma/barro
+   
+   5.Otro (especifique)
+
+*DESCRIPCIÓN:* Este indicador el material del techo según el tipo de vivienda.
+*MÉTODO DE MEDICIÓN:* El método de medición se realizará con la captura de las dos variables que se encuentran en la base de datos (Tipo de vivienda y material del techo).
+*FÓRMULA DE CÁLCULO:*
+Se realizará un plot (comando en R) para el cruce de variables entre el tipo de vivienda que se escoja y los datos del material del techo.
+
+
+**ANÁLISIS**
+
+Lo más resaltante que podemos destacar es lo siguiente:
+
+* En la eh19 en el tipo de casa (casa) hay 5446 viviendas que tienen el techo de calamina o plancha.
+
+* En la eh19 en el tipo de casa (casa) hay 2373 viviendas que tienen el techo de teja (cemento/arcilla/fibrocemento).
+
+* En la eh19 en el tipo de casa (casa) hay 3 viviendas que tienen el techo de otro (Especifique).
+
+
+Row
+-----------------------------------------------------------------------
+
+Column {.tabset}
+----------------------------------------
+
+
+IND 8
+=======================================================================
+  
+Row
+-----------------------------------------------------------------------
+  
+### TABLA
+  
+```{r}
+# SPARK
+# continuando con el indicador 3
+knitr::kable(sp_bd %>% group_by(s01a_01) %>% summarise(mean(s01a_04,na.rm = T)))
+```
+
+
+Column {.tabset}
+----------------------------------------
+### GRAFICA 
+
+  
+```{r}
+sp_bd %>% dbplot_bar(s01a_01, mean(s01a_04,na.rm = T))
+spark_disconnect(sc)
+```
+
+### FICHA TECNICA 
+
+
+**8.RELACIÓN ENTRE PAGO DE ALQUILER DE LA VIVIENDA (4) SEGÚN EL TIPO DE VIVIENDA (1)**
+
+*NOMBRE DEL INDICADOR:* Pagos mensuales de alquiler por una vivienda.
+*SIGLA DEL INDICADOR:* Viv_8
+*OBJETIVO:* Mostrar los pagos medios de alquiler de estas viviendas.
+*VARIABLE:* Las variables que se utilizará para la construcción de este indicador son las siguientes:
+
++ ¿Cuánto paga mensualmente por concepto de alquiler de esta vivienda? 
+	
++ La vivienda es:
+	
+	 1. Casa
+	
+	 2. Choza/ Pahuichi
+	
+	 3. Departamento
+	
+	 4. Cuarto(s) o habitación(es) suelta(s)
+	
+	 5. Vivienda improvisada o vivienda móvil
+	
+	 6. Local no destinado para habitación
+
+*DESCRIPCIÓN:* Este indicador muestra un promedio del Pago de alquiler de vivienda según cada tipo de vivienda. 
+*MÉTODO DE MEDICIÓN:* Para la tabla de promedios de alquiler, se hallará la media aritmética de los datos de alquiler, condicionada al tipo de vivienda.
+*FÓRMULA DE CÁLCULO:* Fórmula para el promedio del pago de alquiler según las viviendas.
+$$ prom = \sum_{i=1}^{n} X_i/n $$
+Donde:
+
+xi: Pagos de alquiler según una vivienda en particular
+
+n: Número de observaciones.
+
+
+### ANÁLISIS 
+
+* En la eh19 en el tipo de vivienda el gasto en promedio de alquiler más alto es por un departamento.
+
+* En la eh19 en el tipo de vivienda  el gasto en promedio de alquiler más bajo  es por un Cuarto(s) o habitación (es) suelta(s).
+
+Notando que mucho influye en el alquiler de los tipos de vivienda el departamento y área. 
+
+
+IND 9
+=======================================================================
+
+**TABLAS Y GRAFICOS**
+
+```{r}
+# departamento 
+bd9<-bd[!is.na(bd$s01a_11aa),]
+viv_9<-aggregate(bd9$s01a_11aa,list(bd9$depto,bd9$s01a_01),mean)
+nom<-names(table(viv_9$Group.1))
+## seleccionamos por departamentos
+for(i in 1:6){
+beni<-viv_9[viv_9$Group.1==nom[i],]
+g9<-barplot(beni$x,names.arg = beni$Group.2,ylim=c(0,40),main = nom[i])
+text(g9,beni$x,round(beni$x,2),pos=3)
+print(knitr::kable(beni,caption = nom[i]))
+}
+```
+  
+**FICHA TECNICA** 
+
+
+9.RELACIÓN ENTRE LAS HORAS AL DÍA QUE SE DISPONE DEL SERVICIO DE AGUA (11) SEGÚN TIPO DE VIVIENDA
+
+*NOMBRE DEL INDICADOR:* Tiempo de disposición de agua según el Tipo de Vivienda.
+*SIGLA DEL INDICADOR:* Viv_9
+*OBJETIVO:* Determinar el promedio de las horas al día que disponen las viviendas del servicio de agua según el tipo de vivienda por departamento.
+*VARIABLES:* La construcción del indicador considera dos variables (pregunta) del cuestionario.
+
++ Generalmente, ¿cuántas horas al día dispone del servicio de agua? 
+	
++ depto
+
+*DESCRIPCIÓN DEL INDICADOR:* El indicador refleja el promedio del tiempo en horas al día que disponen las viviendas del agua según el tipo de vivienda, para cada departamento.
+*MÉTODO DE MEDICIÓN:* La medición se realizará a través de la variable horas/día de agua, donde se obtendrá tales datos, a la vez esta será relacionada con el tipo de vivienda, esto nos ayudará a conocer el promedio de las horas/día de agua de acuerdo al tipo de vivienda.
+*FÓRMULA DE CÁLCULO:* 
+$$ u_i= \sum_{i=1}^{n} X_i/n $$                               
+Donde:
+
+xi = Lo datos 
+
+ui= Es el promedio.
+
+n = Es el número total de observaciones.   
+
+
+**ANÁLISIS**
+
+* Por ejemplo podemos analizar por algunos departamentos.
+
+ + La distribución promedio de horas al día que disponen las viviendas del servicio de agua en el departamento de La Paz, tiene un tipo de comportamiento uniforme, con relación a los  tipos de vivienda.
+ 
+ + La distribución promedio de horas al día que disponen las viviendas del servicio de agua en el departamento de Cochabamba, tiene un tipo de comportamiento creciente y decreciente, con relación a los  tipos de vivienda.
+ 
+ + En el departamento de Potosí el promedio de horas al día que dispone del servicio de agua en  el tipo de vivienda casa es menos al tipo de vivienda "Cuarto(s) o habitación(es) suelta(s)".
+ 
+
+Row
+-----------------------------------------------------------------------
+
+Column {.tabset}
+----------------------------------------
+
+
+IND 10
+=======================================================================
+  
+Row
+-----------------------------------------------------------------------
+  
+### TABLA
+  
+```{r}
+nom10<-names(table(bd$depto))
+t10<-round(prop.table(table(bd$depto,bd$s01a_25),1)*100,3)
+t10f<-as.data.frame((t10))
+### seleccionar por departamento
+for(i in 1:9){
+tcoch<-t10f[t10f$Var1==nom10[i],]
+print(knitr::kable(tcoch,caption = nom10[i]))
+}
+```
+
+
+Column {.tabset}
+----------------------------------------
+### GRAFICA 
+
+  
+```{r}
+nom10<-names(table(bd$depto))
+t10<-round(prop.table(table(bd$depto,bd$s01a_25),1)*100,3)
+t10f<-as.data.frame((t10))
+### seleccionar por departamento
+for(i in 1:9){
+tcoch<-t10f[t10f$Var1==nom10[i],]
+gcoch<-barplot(tcoch$Freq,names.arg = tcoch$Var2,main = tcoch$Var1[1],ylim = c(0,100))
+text(gcoch,tcoch$Freq,paste0(tcoch$Freq,"%"),pos=3)}
+```
+
+### FICHA TECNICA 
+
+**10. RELACIÓN ENTRE TIPO DE COMBUSTIBLE O ENERGÍA QUE SE UTILIZA PARA COCINAR (25) SEGÚN DEPARTAMENTO**
+
+*NOMBRE DEL INDICADOR:* Tipo de combustible para cocinar según el departamento.
+*SIGLA DEL INDICADOR:* Viv_10
+*OBJETIVO:* Determinar el porcentaje de los tipos de combustible o energía que se utiliza para cocinar/preparar alimentos según el departamento.
+*VARIABLES:* La construcción del indicador considera dos variables (pregunta) del cuestionario.
+
++ Principalmente ¿qué tipo de combustible o energía utiliza para cocinar/ preparar sus alimentos?
+	
+	 1. Leña 
+	
+	 2. Guano/bosta o taquia
+	 
+	 3. Gas licuado (garrafa)
+	 
+	 4. Gas natural por red (cañería)
+	 
+	 5. Otro
+	 
+	 6. Electricidad
+	 7. No cocina
+
++ depto
+
+*DESCRIPCIÓN DEL INDICADOR:* El indicador refleja el porcentaje del tipo de combustible o energía para cocinar con las que cuentan estas viviendas dependiendo del departamento donde estas se ubiquen.
+*MÉTODO DE MEDICIÓN:* El método de medición de este indicador se realizará a través de una tabla de frecuencias, ya que este es una variable cualitativa, en la tabla de frecuencias hallaremos el porcentaje de cada una de estas opciones.
+*FÓRMULA DE CÁLCULO:*
+$$ f_i = n_i/N $$
+$$ P_i = f_i*100 $$
+Donde:
+
+fi = Es la frecuencia relativa 
+
+ni = Es la frecuencia absoluta
+
+N = Es el número total de observaciones
+
+Pi = Es el porcentaje de cada observación
+
+
+### ANÁLISIS 
+
+Veamos los tres principales departamentos con mayor población.
+
+La Paz
+
+* El porcentaje que se utiliza para cocinar/preparar alimentos por medio de gas licuado (garrafa) es mayor al porcentaje de gas natural por red (cañería), pero tenemos que tener en cuenta que en el área rural no hay gas natural por red, lo cual influye.
+
+Cochabamba
+
+* El porcentaje que se utiliza para cocinar/preparar alimentos por medio de gas licuado (garrafa) es mayor al porcentaje de gas natural por red (cañería), pero tenemos que tener en cuenta que en el área rural no hay gas natural por red, lo cual influye.
+
+* El 2.644 % representa que en la vivienda no se cocina.
+
+Santa Cruz
+
+* El porcentaje que se utiliza para cocinar/preparar alimentos por medio de gas licuado (garrafa) es mayor al porcentaje de gas natural por red (cañería), pero tenemos que tener en cuenta que en el área rural no hay gas natural por red, lo cual influye.
+
+Entre los tres departamentos, Santa Cruz es la ciudad con mayor porcentaje que utiliza el gas licuado (garrafa) para preparar alimentos en la vivienda.
+
+
+```{r}
+
+```
+
+
+IND 11
+=======================================================================
+
+
+```{r }
+round(prop.table(table(bd$s01a_15,bd$area,bd$depto),1)*100,2)
+# Para beni
+bben<-bd[bd$depto=="Beni" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,60),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+# para la paz
+
+bben<-bd[bd$depto=="La Paz" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,100),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+
+# para chuquisaca
+
+bben<-bd[bd$depto=="Chuquisaca" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,100),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+
+# para santa cruz
+
+bben<-bd[bd$depto=="Santa Cruz" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,100),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+
+# para cochabamba
+
+bben<-bd[bd$depto=="Cochabamba" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,100),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+
+# para pando
+bben<-bd[bd$depto=="Pando" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,100),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+
+# para oruro
+
+bben<-bd[bd$depto=="Oruro" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,100),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+
+
+
+# para potosi
+
+bben<-bd[bd$depto=="Potosí" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,100),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+
+
+# para tarija
+bben<-bd[bd$depto=="Tarija" , ]
+tben<-round(prop.table(table(bben$s01a_15,bben$area))*100,2)
+
+gben<-barplot(t(tben),names.arg = rownames(tben),col = c("blue","red"),beside = T, ylim=c(0,100),main = bben$depto[1])
+text(gben,t(tben),paste0(t(tben),"%"),pos=3)
+legend("right",pch=16,col = c("blue","red"),legend = c("Rural","Urbana"),lty = 1)
+```
+  
+
+**FICHA TECNICA**
+
+11. RELACIÓN ENTRE TIPO DE BAÑO O LETRINA QUE UTILIZAN NORMALMENTE LOS MIEMBROS DE SU HOGAR (15) SEGÚN ÁREA, POR DEPARTAMENTO.
+
+*NOMBRE DEL INDICADOR:* Tipo de baño o letrina según el área por departamento.
+*SIGLA DEL INDICADOR:* Viv_11
+*OBJETIVO:* Determinar el porcentaje de los tipos de baños, servicios sanitarios o letrinas que utilizan por área, según el departamento elegido.
+*VARIABLES:* La construcción del indicador considera dos variables (pregunta) del cuestionario.
+
++ ¿Qué tipo de baño, servicio sanitario o letrina utilizan normalmente los miembros de su hogar?
+	
+	1. Baño o letrina con descarga de agua
+
+	2. Letrina de pozo ciego con piso
+
+	3. Pozo abierto (pozo ciego sin piso)
+
+	4. Baño ecológico (seco o de compostaje)
+
+	5. Ninguno (Arbusto/Campo)
+
++ Área
++ depto
+
+*DESCRIPCIÓN DEL INDICADOR:*  El indicador refleja el porcentaje del tipo de baño, servicio sanitario o letrina utilizan normalmente las viviendas dependiendo del área, según el departamento elegido.
+*MÉTODO DE MEDICIÓN:* El método de medición de este indicador se realizará a través de una tabla de frecuencias, ya que este es una variable cualitativa, en la tabla de frecuencias hallaremos el porcentaje de cada una de estas opciones, para cada departamento.
+*FÓRMULA DE CÁLCULO:* 
+$$ f_i = n_i/N $$
+
+$$ P_i = f_i*100 $$
+Donde:
+
+fi = Es la frecuencia relativa 
+
+ni = Es la frecuencia absoluta
+
+N = Es el número total de observaciones
+
+Pi = Es el porcentaje de cada observación
+
+*FUENTE DE DATOS:*
+Los datos utilizados en todos los indicadores provienen de la Encuesta a Hogares 2018- INE (Instituto nacional de estadísticas).
+
+
+**ANÁLISIS**
+
+Analizamos los tres principales departamentos.
+
+La Paz
+
+* En el área Urbana el porcentaje de viviendas que utilizan baño o letrina con descarga de agua es mayor a el área rural, esto debido a que las personas que viven en el área rural utilizan otros métodos.
+
+Cochabamba
+
+* En el área Urbana el porcentaje de viviendas que utilizan baño o letrina con descarga de agua es mayor a el área rural, esto debido a que las personas que viven en el área rural utilizan otros métodos.
+
+Santa Cruz
+
+* En el área Urbana el porcentaje de viviendas que utilizan baño o letrina con descarga de agua es mayor a el área rural, esto debido a que las personas que viven en el área rural utilizan otros métodos, y la diferencia es grande.
+
+Entre los tres departamentos La Paz es la que tiene mayor porcentaje que utiliza baño o letrina con descarga de agua, con un 27.14 %.
+
+
+Row
+-----------------------------------------------------------------------
+
+Column {.tabset}
+----------------------------------------
+
+
+
+
+
+
+
+
+
